@@ -5,9 +5,6 @@ public class KakoImaSceneManager : MonoBehaviour
 {
     public static KakoImaSceneManager instance;
 
-    [SerializeField]
-    private Player player;
-
     private void Awake()
     {
         instance = this;
@@ -16,8 +13,16 @@ public class KakoImaSceneManager : MonoBehaviour
     public void MainSceneLoad()
     {
         Time.timeScale = 1f;
-        player.SaveReplay();
+        JsonController.instance.DeleteAllReplays();
         SceneManager.LoadScene("Main");
-
     }
+
+    public void ReplayMainSceneLoad()
+    {
+        Time.timeScale = 1f;
+        GameObject.Find("Player").GetComponent<Player>().SaveReplay();
+        SceneManager.LoadScene("Main");
+    }
+
+
 }

@@ -6,7 +6,7 @@ public class Goal : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            KakoImaSceneManager.instance.MainSceneLoad();
+            KakoImaSceneManager.instance.ReplayMainSceneLoad();
         }
     }
 }

@@ -86,10 +86,16 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        onGrasp = true;
+        if (other.gameObject.tag == "Grasp")
+        {
+            onGrasp = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        onGrasp = false;
+        if (other.gameObject.tag == "Grasp")
+        {
+            onGrasp = false;
+        }
     }
 }

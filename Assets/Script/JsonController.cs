@@ -14,7 +14,6 @@ public class JsonController : MonoBehaviour
             instance = this;
             replayFolder = Path.Combine(Application.persistentDataPath, "Replays");
             Directory.CreateDirectory(replayFolder);
-            Debug.Log(replayFolder);
         }
     }
     public void SaveFile(ReplayData data)

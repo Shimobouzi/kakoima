@@ -6,6 +6,7 @@ public class ReplayPlayer : Player
     private int index = 0;
     private int id = 0;
     private ReplayData dataFile;
+    private bool jumpFirst = false;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class ReplayPlayer : Player
     {
         if (!jumpB)
         {
+            jumpFirst = false;
             if (p_rb.linearVelocity.y > 1)
             {
                 p_rb.linearVelocity = new Vector3(0, 1f, p_rb.linearVelocity.z);
@@ -42,8 +44,9 @@ public class ReplayPlayer : Player
                 p_rb.linearVelocity = new Vector3(0, p_rb.linearVelocity.y, p_rb.linearVelocity.z);
             }
         }
-        else if (onGround || onGrasp)
+        else if (!jumpFirst && (onGround || onGrasp))
         {
+            jumpFirst = true;
             p_rb.linearVelocity = new Vector3(0, jumpPower, p_rb.linearVelocity.z);
             //_animator.SetBool("jump", true);
             onGround = false;
