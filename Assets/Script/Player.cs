@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
     protected float jumpPower = 11f;
     [SerializeField]
     private float moveSpeed = 5f;
-    //[SerializeField]
-    //private Animator _animator;
+    [SerializeField]
+    protected Animator _animator;
 
     protected float moveInput;
+    public float getMoveInput { get { return moveInput; } }
     private bool jumpInput = false;
     protected Rigidbody p_rb;
     protected bool onGround = false;
@@ -35,6 +36,14 @@ public class Player : MonoBehaviour
     protected void PlayerMove()
     {
         p_rb.linearVelocity = new Vector3(0, p_rb.linearVelocity.y, moveInput * moveSpeed);
+        if (p_rb.linearVelocity.z != 0)
+        {
+            _animator.SetBool("runBool", true);
+        }
+        else
+        {
+            _animator.SetBool("runBool", false);
+        }
     }
     
     public virtual void OnMove(InputAction.CallbackContext context)
@@ -56,12 +65,17 @@ public class Player : MonoBehaviour
                 p_rb.linearVelocity = new Vector3(0, p_rb.linearVelocity.y, p_rb.linearVelocity.z);
             }
         }
-        else if (onGround || onGrasp)
+        else if (onGround)
         {
             jumpInput = true;
             p_rb.linearVelocity = new Vector3(0, jumpPower ,p_rb.linearVelocity.z);
-            //_animator.SetBool("jump", true);
-            onGround = false;
+            _animator.SetBool("jumpBool", true);
+        }else if (onGrasp)
+        {
+            jumpInput = true;
+            p_rb.linearVelocity = new Vector3(0, jumpPower, p_rb.linearVelocity.z);
+            _animator.SetBool("graspBool", true);
+            _animator.SetBool("graspBool", false);
         }
     }
 
@@ -75,6 +89,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
+            _animator.SetBool("jumpBool", false);
         }
     }
     private void OnCollisionExit(Collision collision)

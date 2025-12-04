@@ -44,13 +44,22 @@ public class ReplayPlayer : Player
                 p_rb.linearVelocity = new Vector3(0, p_rb.linearVelocity.y, p_rb.linearVelocity.z);
             }
         }
-        else if (!jumpFirst && (onGround || onGrasp))
+        else if (!jumpFirst)
         {
             jumpFirst = true;
-            p_rb.linearVelocity = new Vector3(0, jumpPower, p_rb.linearVelocity.z);
-            //_animator.SetBool("jump", true);
-            onGround = false;
+            if (onGround)
+            {
+                p_rb.linearVelocity = new Vector3(0, jumpPower, p_rb.linearVelocity.z);
+                _animator.SetBool("jumpBool", true);
+            }
+            else if (onGrasp)
+            {
+                p_rb.linearVelocity = new Vector3(0, jumpPower, p_rb.linearVelocity.z);
+                _animator.SetBool("graspBool", true);
+                _animator.SetBool("graspBool", false);
+            }
         }
+        
     }
 
     private void LoadReplay()
