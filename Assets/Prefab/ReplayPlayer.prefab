@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216a21f85d6486749afd589a60fe793c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 11
-  moveSpeed: 5
+  jumpPower: 8
+  moveSpeed: 3
   _animator: {fileID: 172298438555113492}
 --- !u!1 &3027853432393508026
 GameObject:

@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class ReplayPlayer : Player
+public class ReplayLoaderPlayer : Player
 {
+    [SerializeField]
+    private string replayData;
+
     private int index = 0;
     private int id = 0;
     private ReplayData dataFile;
@@ -9,7 +12,7 @@ public class ReplayPlayer : Player
 
     private void Awake()
     {
-        id = GameObject.FindGameObjectsWithTag("ReplayPlayer").Length-1;
+        id = GameObject.FindGameObjectsWithTag("ReplayPlayer").Length - 1;
         LoadReplay();
     }
 
@@ -58,11 +61,11 @@ public class ReplayPlayer : Player
                 _animator.SetBool("graspBool", false);
             }
         }
-        
+
     }
 
     private void LoadReplay()
     {
-        dataFile = JsonController.instance.LoadFileId(id);
+        dataFile = JsonUtility.FromJson<ReplayData>(replayData);
     }
 }

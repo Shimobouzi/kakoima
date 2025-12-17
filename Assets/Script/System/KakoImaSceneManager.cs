@@ -38,5 +38,20 @@ public class KakoImaSceneManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void TutorialSceneLoad()
+    {
+        Time.timeScale = 1f;
+        JsonController.instance.DeleteAllReplays();
+        KakoimaDB.Instance.ResetCount();
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void ReplayTutorialSceneLoad()
+    {
+        Time.timeScale = 1f;
+        GameObject.Find("Player").GetComponent<Player>().SaveReplay();
+        SceneManager.LoadScene("Tutorial");
+    }
+
 
 }

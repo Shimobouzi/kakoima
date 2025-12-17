@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    protected float jumpPower = 11f;
+    protected float jumpPower = 8f;
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 3f;
     [SerializeField]
     protected Animator _animator;
 

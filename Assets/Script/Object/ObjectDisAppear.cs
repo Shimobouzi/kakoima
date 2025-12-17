@@ -3,10 +3,10 @@ using UnityEngine;
 public class ObjectDisAppear : MonoBehaviour
 {
     [SerializeField]
-    private int appearRound = 0;
+    private int disAppearRound = 0;
     void Start()
     {
-        if (KakoimaDB.Instance.getGoalCount() < appearRound)
+        if (KakoimaDB.Instance.getGoalCount() < disAppearRound)
         {
             this.gameObject.SetActive(true);
         }
